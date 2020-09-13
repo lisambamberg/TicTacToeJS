@@ -60,8 +60,8 @@ const checkBoard = function checkBoard() {
                 winningMessageTextElement.textContent = 'O is the winner!'
                 winningMessageTextElement.classList.add('show')
             }
-            if (currentTurn >= 8) {
-                if (oWinCounter < 3 || xWinCounter < 3) {
+            if (currentTurn > 8) {
+                if (oWinCounter ==! 3 || xWinCounter ==! 3) {
                     stopGame()
                     winningMessageTextElement.textContent = 'It\'s a draw!'
                     winningMessageTextElement.classList.add('show')
