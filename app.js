@@ -1,7 +1,6 @@
 let cells = document.querySelectorAll(".row > div");
 let player1 = "X";
 let player2 = "O";
-let gameBoard = [["", "", ""], ["", "", ""], ["", "", ""]];
 let winCombo = [
     [cells[0], cells[1], cells[2]],
     [cells[3], cells[4], cells[5]],
@@ -32,8 +31,16 @@ function startGame() {
     }
 }
 
-let checkBoard = function checkBoard() {
+function stopGame () {
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].removeEventListener('click', startGame)
+      document.body.addEventListener('click', function () {
+        location.reload()
+      }, true)
+    }
+  }  
 
+let checkBoard = function checkBoard() {
     for (let i = 0; i < winCombo.length; i++) {
         let xWinCounter = 0;
         let oWinCounter = 0;
@@ -44,24 +51,22 @@ let checkBoard = function checkBoard() {
                 oWinCounter++;
             }
             if (xWinCounter === 3) {
+                stopGame()
                 winningMessageTextElement.textContent = "X is the winner!";
                 winningMessageTextElement.classList.add('show');
             }
             else if (oWinCounter === 3) {
+                stopGame()
                 winningMessageTextElement.textContent = "O is the winner!";
                 winningMessageTextElement.classList.add('show');
             }
             if (currentTurn >= 8) {
                 if (oWinCounter < 3 || xWinCounter < 3) {
+                    stopGame()
                     winningMessageTextElement.textContent = "It's a draw!";
                     winningMessageTextElement.classList.add('show');
                 }
             }
         }
-    }
-}
-let resetBoard = function resetBoard() {
-    for (let i = 0; i < gameBoard; i++) {
-        cells = "";
     }
 }
