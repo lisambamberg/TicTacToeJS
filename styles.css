@@ -15,21 +15,43 @@
     margin: 0 auto;
     width: 302px;
     line-height: 100px;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .top {
-    border-bottom: 1px black solid;
+    border-bottom: 1px #ADEFD1FF solid;
 }
 
 .bottom {
-    border-top: 1px black solid;
+    border-top: 1px #ADEFD1FF solid;
 }
 
 .left {
-    border-right: 1px black solid;
+    border-right: 1px #ADEFD1FF solid;
 }
 
 .right {
-    border-left: 1px black solid;
+    border-left: 1px #ADEFD1FF solid;
 }
+
+body {
+    background-color:#00203FFF;
+    font-family: 'Nanum Myeongjo', serif;
+    color:#ADEFD1FF;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+.winning-message {
+    font-family: 'Nanum Myeongjo', serif;
+    color: #ADEFD1FF;
+    font-size: 35px;
+    align-items: center;
+
+}
+
+.winning-message.show {
+    display: flex;
+} 
