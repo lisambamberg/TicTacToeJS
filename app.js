@@ -33,25 +33,35 @@ function startGame() {
 }
 
 let checkBoard = function checkBoard() {
+
     for (let i = 0; i < winCombo.length; i++) {
         let xWinCounter = 0;
         let oWinCounter = 0;
         for (let j = 0; j < winCombo[i].length; j++) {
             if (winCombo[i][j].textContent === player1) {
                 xWinCounter++;
-            } else if (winCombo[i][j].textContent === player2) {
+            } if (winCombo[i][j].textContent === player2) {
                 oWinCounter++;
-            } else if (winCombo.textContent !== player1 && currentTurn == 9 || winCombo.textContent !== player2 && currentTurn == 9) {
-                winningMessageTextElement.textContent = "It's a draw!";
-                winningMessageTextElement.classList.add('show');
-            } if (xWinCounter === 3) {
+            }
+            if (xWinCounter === 3) {
                 winningMessageTextElement.textContent = "X is the winner!";
                 winningMessageTextElement.classList.add('show');
-            } else if (oWinCounter === 3) {
+            }
+            else if (oWinCounter === 3) {
                 winningMessageTextElement.textContent = "O is the winner!";
                 winningMessageTextElement.classList.add('show');
+            }
+            if (currentTurn >= 8) {
+                if (oWinCounter < 3 || xWinCounter < 3) {
+                    winningMessageTextElement.textContent = "It's a draw!";
+                    winningMessageTextElement.classList.add('show');
+                }
             }
         }
     }
 }
-
+let resetBoard = function resetBoard() {
+    for (let i = 0; i < gameBoard; i++) {
+        cells = "";
+    }
+}
