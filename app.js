@@ -27,7 +27,7 @@ function startGame() {
             event.target.textContent = player2
             checkBoard()
         }
-        currentTurn++
+       
     }
 }
 
@@ -41,32 +41,35 @@ function stopGame() {
 }
 
 const checkBoard = function checkBoard() {
+    currentTurn++
     for (let i = 0; i < winCombo.length; i++) {
         let xWinCounter = 0
         let oWinCounter = 0
         for (let j = 0; j < winCombo[i].length; j++) {
             if (winCombo[i][j].textContent === player1) {
                 xWinCounter++
-            } if (winCombo[i][j].textContent === player2) {
+            } 
+            if (winCombo[i][j].textContent === player2) {
                 oWinCounter++
             }
-            if (xWinCounter === 3) {
-                stopGame()
-                winningMessageTextElement.textContent = 'X is the winner!'
-                winningMessageTextElement.classList.add('show')
-            }
-            else if (oWinCounter === 3) {
-                stopGame()
-                winningMessageTextElement.textContent = 'O is the winner!'
-                winningMessageTextElement.classList.add('show')
-            }
-            if (currentTurn > 8) {
-                if (oWinCounter ==! 3 || xWinCounter ==! 3) {
-                    stopGame()
-                    winningMessageTextElement.textContent = 'It\'s a draw!'
-                    winningMessageTextElement.classList.add('show')
-                }
-            }
+        }
+
+        if (xWinCounter == 3) {
+            console.log('do you think god stays in heaven because he too is scared of what he created');
+            stopGame()
+            winningMessageTextElement.textContent = 'X is the winner! Click to play again!'
+            winningMessageTextElement.classList.add('show')
+            break
+        } else if (oWinCounter == 3) {
+            stopGame()
+            winningMessageTextElement.textContent = 'O is the winner! Click to play again!'
+            winningMessageTextElement.classList.add('show');
+            break
+        } else if (currentTurn == 9) {
+            stopGame()
+            winningMessageTextElement.textContent = 'It\'s a draw! Click to play again!'
+            winningMessageTextElement.classList.add('show')
+            break
         }
     }
 }
