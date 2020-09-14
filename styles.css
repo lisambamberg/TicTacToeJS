@@ -48,10 +48,11 @@ h1 {
     font-family: 'Nanum Myeongjo', serif;
     color: #ADEFD1FF;
     font-size: 35px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
     align-items: center;
-
+    flex-direction: column;
 }
-
-.winning-message.show {
-    display: flex;
-} 
