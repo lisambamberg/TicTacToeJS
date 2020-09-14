@@ -1,4 +1,5 @@
 const cells = document.querySelectorAll('.row > div')
+let gameOver = false
 const player1 = 'X'
 const player2 = 'O'
 const winCombo = [
@@ -22,12 +23,13 @@ function startGame() {
     if (event.target.textContent === '') {
         if (currentTurn % 2 == 0) {
             event.target.textContent = player1
+            currentTurn++
             checkBoard()
         } else {
             event.target.textContent = player2
+            currentTurn++
             checkBoard()
         }
-       
     }
 }
 
@@ -41,35 +43,32 @@ function stopGame() {
 }
 
 const checkBoard = function checkBoard() {
-    currentTurn++
     for (let i = 0; i < winCombo.length; i++) {
         let xWinCounter = 0
         let oWinCounter = 0
         for (let j = 0; j < winCombo[i].length; j++) {
             if (winCombo[i][j].textContent === player1) {
                 xWinCounter++
-            } 
-            if (winCombo[i][j].textContent === player2) {
+            }
+            else if (winCombo[i][j].textContent === player2) {
                 oWinCounter++
             }
         }
-
         if (xWinCounter == 3) {
-            console.log('do you think god stays in heaven because he too is scared of what he created');
+            gameOver = true
             stopGame()
             winningMessageTextElement.textContent = 'X is the winner! Click to play again!'
             winningMessageTextElement.classList.add('show')
-            break
         } else if (oWinCounter == 3) {
+            gameOver = true
             stopGame()
             winningMessageTextElement.textContent = 'O is the winner! Click to play again!'
             winningMessageTextElement.classList.add('show');
-            break
-        } else if (currentTurn == 9) {
-            stopGame()
-            winningMessageTextElement.textContent = 'It\'s a draw! Click to play again!'
-            winningMessageTextElement.classList.add('show')
-            break
         }
+    }
+    if (currentTurn == 9 && !gameOver) {
+        stopGame()
+        winningMessageTextElement.textContent = 'It\'s a draw! Click to play again!'
+        winningMessageTextElement.classList.add('show')
     }
 }
